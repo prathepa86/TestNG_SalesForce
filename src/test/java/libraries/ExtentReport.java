@@ -5,7 +5,7 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 
-public abstract class ExtentReport {
+public abstract class ExtentReport{
 	 
 	public static ExtentSparkReporter spark;
 	public static ExtentReports extent;

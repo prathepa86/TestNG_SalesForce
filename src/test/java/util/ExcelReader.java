@@ -11,7 +11,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ExcelReader {
 	
-	public static Object readDataFromExcel(String ExcelFileName) {
+	public static Object[][] readDataFromExcel(String ExcelFileName) {
 		
 		Object[][] data=null;
 		Object cellValue=null;
