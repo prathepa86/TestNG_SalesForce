@@ -10,7 +10,9 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.DataProvider;
 
@@ -23,7 +25,7 @@ public WebDriver driver;
 public String fileName="environment";
 public String URL=PropertyReader.readDataFromPropertyFile("sURL", fileName);
 public String browserType=PropertyReader.readDataFromPropertyFile("sBrowser", fileName);
-public String TestCase,Desc,nodes;
+public String TestCase,TestDesc,nodes;
 public String ExcelFileName;
 
 @BeforeSuite
@@ -36,7 +38,7 @@ public void reportBind() {
 	endReport();
 }
 
-
+@BeforeClass
 public void invokeBrowser() {
 	
 	switch(browserType.toLowerCase()) {
@@ -60,10 +62,15 @@ public void invokeBrowser() {
 	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 	driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
 	driver.get(URL);
-	startTestCase(TestCase,Desc);
+	startTestCase(TestCase,TestDesc);
 	startTestCase(nodes);
 	
 		
+}
+
+@AfterClass
+public void closeBrowser() {
+	driver.quit();
 }
 
 @DataProvider(name="ExcelData")
